@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LIFF 最簡測試 - share target picker</title>
+  <script src="https://static.line-scdn.net/liff/edge/versions/2.17.0/sdk.js"></script>
+  <script>
+    // 頁面載入後執行
+    document.addEventListener("DOMContentLoaded", function(){
+
+
+      // liff init
+      liff.init({
+        liffId: "1656644825-qB8gGbme",
+        withLoginOnExternalBrowser: true
+      }).then(() => {
+
+
+        // liff init 後執行
+        alert("liff init 成功");
+
+
+        // 使用 Share Target Picker 傳送訊息給指定對話框
+        liff.shareTargetPicker(
+          [
+            {
+              type: "text",
+              text: "這是透過 LIFF share target picker 發送的訊息！"
+            },
+          ],
+          {
+            isMultiple: true,
+          }
+        ).then(function (response) {
+          if (response) {
+            alert("你已成功分享訊息！");
+          } else {
+            const [majorVer, minorVer] = (liff.getLineVersion() || "").split('.');
+            if (parseInt(majorVer) == 10 && parseInt(minorVer) < 11) {
+              alert("你的 LINE 版本太舊，無法使用分享訊息功能。");
+            } else {
+              alert("你已取消分享訊息。");
+            }
+          }
+        }).catch(function (error) {
+          alert("壞了");
+        });
+
+
+      });
+
+
+    });
+  </script>
+</head>
+<body>
+
+</body>
+</html>

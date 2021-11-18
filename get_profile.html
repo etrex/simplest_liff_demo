@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LIFF 最簡測試 - send messages</title>
+  <script src="https://static.line-scdn.net/liff/edge/versions/2.17.0/sdk.js"></script>
+  <script>
+    // 頁面載入後執行
+    document.addEventListener("DOMContentLoaded", function(){
+
+
+      // liff init
+      liff.init({
+        liffId: "1656644825-059PdOoz",
+        withLoginOnExternalBrowser: true
+      }).then(() => {
+
+
+        // liff init 後執行
+        alert("liff init 成功");
+
+
+        // 取得用戶個資
+        liff.getProfile().then((profile) => {
+          alert(JSON.stringify(profile));
+        }).catch((err) => {
+          alert("Get Profile 失敗");
+        });
+
+
+      });
+
+
+    });
+  </script>
+</head>
+<body>
+
+</body>
+</html>
